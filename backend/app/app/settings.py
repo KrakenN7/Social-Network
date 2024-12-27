@@ -10,11 +10,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = str(os.getenv("DJANGO_SECRET_KEY"))
 
-DEBUG = str(os.getenv("DJANGO_DEBUG")) in (
+DEBUG = str(os.getenv("DJANGO_DEBUG")).lower() in (
     "1",
     "t",
     "true",
-    "True",
     "y",
     "yes",
 )
@@ -23,15 +22,16 @@ ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", default="*").split(",")
 
 
 INSTALLED_APPS = [
-    # "ping.apps.PingConfig",
-    "django_filters",
-    "rest_framework",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_filters",
+    "rest_framework",
+    "api.countries.apps.CountriesConfig",
+
 ]
 
 MIDDLEWARE = [
