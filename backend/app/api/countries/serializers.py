@@ -1,10 +1,9 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 
 from api.countries.models import Countries
 
 
-class CountriesSerializer(ModelSerializer):
+class CountriesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Countries
-        fields = "__all__"
-    
+        fields = ["name", "alpha2", "alpha3", "region"]

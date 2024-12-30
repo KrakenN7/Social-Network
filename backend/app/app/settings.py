@@ -28,10 +28,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_filters",
-    "rest_framework",
     "api.countries.apps.CountriesConfig",
-
+    "api.ping.apps.PingConfig",
+    "rest_framework",
+    "django_filters",
 ]
 
 MIDDLEWARE = [
@@ -69,7 +69,7 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": os.getenv("POSTGRES_DATABASE"),
-        "USER": os.getenv("POSTGRES_USENAME"),
+        "USER": os.getenv("POSTGRES_USERNAME"),
         "PASSWORD": str(os.getenv("POSTGRES_PASSWORD")),
         "HOST": os.getenv("POSTGRES_HOST"),
         "PORT": os.getenv("POSTGRES_PORT"),
@@ -117,7 +117,9 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
-    ]
+    "DEFAULT_PAGINATION_CLASS": (
+        "rest_framework.pagination.PageNumberPagination",
+    ),
+    "PAGE_SIZE": 10,
 }
+APPEND_SLASH = True

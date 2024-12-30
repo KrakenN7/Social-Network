@@ -1,12 +1,10 @@
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.generics import ListAPIView
 
 from api.countries.models import Countries
 from api.countries.serializers import CountriesSerializer
 
 
-class CountriesViewSet(ModelViewSet):
+class CountriesListApiView(ListAPIView):
+    pagination_class = None
     queryset = Countries.objects.all()
     serializer_class = CountriesSerializer
-
-    def get_queryset(self):
-        return self.queryset

@@ -11,13 +11,10 @@ class CountriesAdmin(admin.ModelAdmin):
         "alpha3",
         "region",
     ]
-    list_filter = [
-        "name"
-    ]
+    list_filter = ["name"]
     list_editable = [
         "alpha2",
         "alpha3",
         "region",
     ]
-#     list_display_links = ["name"]
-# ks = ["id_counries"]
+    list_display_links = ["name"]
